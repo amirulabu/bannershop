@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>title</title>
+  <link rel='stylesheet prefetch' href='jquery-ui.css'>
+  <link rel='stylesheet prefetch' href='bootstrap.min.css'>
+  <style type="text/css">
+    .container{
+      max-width: 970px;
+    }
+    #man {
+      height: 300px;
+    }
+    #image {
+      height: 150px;
+    }
+    .picture {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js'></script>
+  <script src='bootstrap.min.js'></script>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 align="center">Banner Printing Online</h1>
+        <p>Order your banner here!</p>
+
+      </div>
+    </div>
+    <div class="row">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="type" class="col-sm-2 control-label">Type:</label>
+          <div class="col-sm-10">
+            <select class="form-control">
+              <option>Vinyl Banners(outdoor)</option>
+              <option>Fabric banners(indoor)</option>
+            </select>
+          </div>
+          
+        </div>
+        <div class="form-group">
+          <label for="amountHeight" class="col-sm-2 control-label">Height:</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="amountHeight" readonly style="border:0;font-weight:bold;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Use slider to adjust height">
+          </div>
+          <div class="col-sm-8">
+            <div class="slider" id="sliderHeight"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="amountWidth" class="col-sm-2 control-label">Width:</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="amountWidth" readonly style="border:0;font-weight:bold;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Use slider to adjust width">
+          </div>
+          <div class="col-sm-8">
+            <div class="slider" id="sliderWidth"></div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 picture">
+          <div id="target">
+            <img id="man" src="man-standing-silhouette.jpg"><img id="image" src="banner.jpg">
+            <p align="center">Approximate banner size comparison</p>
+          </div>
+        </div>        
+
+
+        <div class="form-group">
+          <div class="col-sm-offset-10 col-sm-2">
+            <button type="submit" class="btn btn-primary">Next </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+    $( function() {
+
+      function resizeImage() {
+        var red = $( "#red" ).slider( "value" ),
+        green = $( "#green" ).slider( "value" ),
+        blue = $( "#blue" ).slider( "value" ),
+        hex = hexFromRGB( red, green, blue );
+        $( "#swatch" ).css( "background-color", "#" + hex );
+      }
+
+
+      $( "#sliderHeight" ).slider({
+        value:3,
+        min: 2,
+        max: 5,
+        step: 0.5,
+        slide: function( event, ui ) {
+          $( "#amountHeight" ).val( ui.value );
+          $( "#image" ).height( ui.value * 54 );
+          $( "#image" ).width( document.getElementById('image').clientWidth ); //quick fix for not sizing proportionaly 
+        }
+      });
+      $( "#amountHeight" ).val( $( "#sliderHeight" ).slider( "value" ) );
+      $( "#amountHeight" ).tooltip();
+      $( "#sliderWidth" ).slider({
+        value:8,
+        min: 4,
+        max: 12,
+        step: 1,
+        slide: function( event, ui ) {
+          $( "#amountWidth" ).val( ui.value );
+          $( "#image" ).width( ui.value * 54 ); 
+        }
+      });
+      $( "#amountWidth" ).val( $( "#sliderWidth" ).slider( "value" ) );
+      $( "#amountWidth" ).tooltip();
+    } );
+  </script>
+</body>
+</html>
