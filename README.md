@@ -7,3 +7,5 @@ custom form for ordering banner with banner size estimate
 * jQuery
 * jQuery UI
 * Bootstrap 3
+
+watch it live [amirulabu.github.io/bannershop](https://amirulabu.github.io/bannershop)
